@@ -4,6 +4,10 @@ ARG BUILDROOT_RELEASE
 ARG UBOOT_RELEASE
 
 FROM ubuntu:24.04 AS base
+LABEL maintainer="Alexey Barnukoff <barnukoff@gmail.com> "
+LABEL homepage="https://github.com/alexeyavb"
+LABEL license="GPL3"
+
 ARG UID
 ARG USERNAME
 ARG BUILDROOT_RELEASE

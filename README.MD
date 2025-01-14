@@ -26,3 +26,4 @@ Build time:
     1 hours on Xeon E5/64Gb Ram/SSD
 
 READ INSTALL FOR BUILD STEPS
+    Regards, Alexey.
