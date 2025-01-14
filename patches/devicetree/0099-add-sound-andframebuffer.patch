@@ -1,0 +1,50 @@
+diff -ruN a/arch/arm/boot/dts/allwinner/sun8i-t113s-mangopi-mq-r-t113.dts b/arch/arm/boot/dts/allwinner/sun8i-t113s-mangopi-mq-r-t113.dts
+--- a/arch/arm/boot/dts/allwinner/sun8i-t113s-mangopi-mq-r-t113.dts	2025-01-10 13:31:36.000000000 +0000
++++ b/arch/arm/boot/dts/allwinner/sun8i-t113s-mangopi-mq-r-t113.dts	2025-01-13 17:23:36.964366766 +0000
+@@ -15,6 +15,46 @@
+ 	aliases {
+ 		ethernet0 = &rtl8189ftv;
+ 	};
++
++	panel {
++                compatible = "lg,lb070wv8", "simple-panel";
++		port {
++			panel_input: endpoint {
++				remote-endpoint = <&tcon_lcd0_out_panel>;
++			};
++		};
++	};
++
++};
++
++
++&wdt {
++	status = "okay";
++};
++
++&de {
++	status = "okay";
++};
++
++&tcon_lcd0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&lcd_rgb666_pins>;
++	status = "okay";
++};
++
++&tcon_lcd0_out {
++	tcon_lcd0_out_panel: endpoint@0 {
++		reg = <0>;
++		remote-endpoint = <&panel_input>;
++	};
++};
++
++&codec_analog {
++	status = "okay";
++};
++
++&codec {
++	status = "okay";
+ };
+ 
+ &cpu0 {

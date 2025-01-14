@@ -1,0 +1,13 @@
+diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_hw.c b/drivers/staging/media/sunxi/cedrus/cedrus_hw.c
+index fa86a658fdc6..11e859617932 100644
+--- a/drivers/staging/media/sunxi/cedrus/cedrus_hw.c
++++ b/drivers/staging/media/sunxi/cedrus/cedrus_hw.c
+@@ -257,7 +257,7 @@ int cedrus_hw_probe(struct cedrus_dev *dev)
+ 	}
+ 
+ 	ret = sunxi_sram_claim(dev->dev);
+-	if (ret) {
++	if (ret && ret != -ENOENT) {
+ 		dev_err(dev->dev, "Failed to claim SRAM\n");
+ 
+ 		goto err_mem;

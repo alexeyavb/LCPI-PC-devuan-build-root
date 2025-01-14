@@ -1,0 +1,28 @@
+000-build-current-step - build by step defined in 00!_docker_env.sh
+001-build-sdcard.sh - build sdcard, sdcard.img in ./dist subfolder
+004-run-shell-current-step.sh - run shell container for builded step defined in 00!_docker_env.sh
+005-run-builder-shell.sh - after full build - chroot in target rootfs, changes not saved!
+
+INSTALL
+All are simple
+run 001-build-sdcard.sh
+wait..
+builded image found in dist subfolder
+write image to sdcard
+sudo dd if=./sdcard.img of=/dev/sdX bs=4096 status=progress && sync
+connect your UARTTTL adapter to PB5(BOARD ttyS3 TX) PB6(BOARD ttyS3 RX) AND GND board pins
+enter sdcard to board
+connect board to usb
+
+enter screen -L /dev/ttySX 115200n8 in your terminal
+ttySX - port of your TTL adapter
+
+default
+ root:root
+
+change SSID and passphrase in
+/etc/network/interfaces
+/etc/wpa_supplicant/wpa_supplicant.conf
+in root folder run ./run_wifi.sh
+
+enjoy!

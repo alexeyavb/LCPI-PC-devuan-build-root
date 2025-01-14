@@ -1,0 +1,39 @@
+diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun20i-d1-codec-analog.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun20i-d1-codec-analog.yaml
+new file mode 100644
+index 000000000000..7586076b9bc5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/allwinner,sun20i-d1-codec-analog.yaml
+@@ -0,0 +1,33 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/allwinner,sun20i-d1-codec-analog.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Allwinner D1 Analog Codec
++
++maintainers:
++  - Maksim Kiselev <bigunclemax@gmail.com>
++
++properties:
++  compatible:
++    const: allwinner,sun20i-d1-codec-analog
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    codec_analog: codec-analog@2030300 {
++        compatible = "allwinner,sun20i-d1-codec-analog";
++        reg = <0x02030300 0xd00>;
++    };
++
++...
++

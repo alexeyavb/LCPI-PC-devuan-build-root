@@ -1,0 +1,23 @@
+diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+index dff363a3c934..4bd374279155 100644
+--- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
++++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+@@ -34,6 +34,17 @@  soc {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 
++		ve: video-codec@1c0e000 {
++			compatible = "allwinner,sun20i-d1-video-engine";
++			reg = <0x1c0e000 0x2000>;
++			interrupts = <SOC_PERIPHERAL_IRQ(66) IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&ccu CLK_BUS_VE>,
++				 <&ccu CLK_VE>,
++				 <&ccu CLK_MBUS_VE>;
++			clock-names = "ahb", "mod", "ram";
++			resets = <&ccu RST_BUS_VE>;
++		};
++
+ 		pio: pinctrl@2000000 {
+ 			compatible = "allwinner,sun20i-d1-pinctrl";
+ 			reg = <0x2000000 0x800>;
+

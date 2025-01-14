@@ -1,0 +1,34 @@
+
+diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+index 1c48bfff1715..6ceb141c3f93 100644
+--- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
++++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
+@@ -180,6 +180,28 @@ ths: thermal-sensor@2009400 {
+ 			#thermal-sensor-cells = <0>;
+ 		};
+ 
++		codec: codec@2030000 {
++			#sound-dai-cells = <0>;
++			compatible = "allwinner,sun20i-d1-codec";
++			reg = <0x02030000 0x300>;
++			interrupts = <SOC_PERIPHERAL_IRQ(25) IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&ccu CLK_BUS_AUDIO>,
++				 <&ccu CLK_AUDIO_ADC>,
++				 <&ccu CLK_AUDIO_DAC>;
++			clock-names = "apb", "adc", "dac";
++			resets = <&ccu RST_BUS_AUDIO>;
++			dmas = <&dma 7>, <&dma 7>;
++			dma-names = "rx", "tx";
++			allwinner,codec-analog-controls = <&codec_analog>;
++			status = "disabled";
++		};
++
++		codec_analog: codec-analog@2030300 {
++			compatible = "allwinner,sun20i-d1-codec-analog";
++			reg = <0x02030300 0xd00>;
++			status = "disabled";
++		};
++
+ 		dmic: dmic@2031000 {
+ 			compatible = "allwinner,sun20i-d1-dmic",
+ 				     "allwinner,sun50i-h6-dmic";
