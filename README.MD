@@ -1,5 +1,12 @@
 Hi! 
-Normal linux for LCPI-PC-T113-F133
+Normal linux distribution for LCPI-PC-T113-F133
+Linux kernel 6.6.71
+u-boot 2024.12
+
+LCD screen with acceleration, sound, cryptoaccel, gpio and wifi worked
+
+
+If you planning use this repo, please follow my profile. thnx!
 
 *For Allwinner ARM T133 board*
 
