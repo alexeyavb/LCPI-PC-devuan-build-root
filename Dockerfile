@@ -415,7 +415,7 @@ EOF
 RUN sudo chmod 440 ./etc/wpa_supplicant/wpa_supplicant.conf
 
 RUN sudo dd if=/dev/urandom of=swapfile.swp bs=1M count=128 && sudo mkswap swapfile.swp
-RUN sudo mkfs.ext4 -d . -r 1 -N 0 -m 5 -L rootfs -I 256 -O ^64bit ${HOME}/output/rootfs.ext4 2G
+RUN sudo mkfs.ext4 -d . -r 1 -N 0 -m 5 -L rootfs -I 256 -O ^64bit ${HOME}/output/rootfs.ext4 3G
 
 # FROM kernel_build AS PAUSE
 #

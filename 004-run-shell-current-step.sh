@@ -4,7 +4,7 @@ docker build  --build-arg UID=$UID --build-arg USERNAME=$USER --build-arg BUILDR
     -t $DOCKER_ID \
     --target $TARGET \
     -f Dockerfile \
-    .			\
+    . \
 && \
 docker run --ipc=host  -it --rm \
   -l "${USER}_devuan_t113" \
