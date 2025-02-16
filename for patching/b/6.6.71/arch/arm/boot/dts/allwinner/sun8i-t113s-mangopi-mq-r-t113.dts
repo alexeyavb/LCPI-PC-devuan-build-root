@@ -1,0 +1,104 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+// Copyright (C) 2022 Arm Ltd.
+
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/dts-v1/;
+
+#include "sun8i-t113s.dtsi"
+#include "sunxi-d1s-t113-mangopi-mq-r.dtsi"
+
+/ {
+	model = "MangoPi MQ-R-T113";
+	compatible = "widora,mangopi-mq-r-t113", "allwinner,sun8i-t113s";
+
+	aliases {
+		ethernet0 = &rtl8189ftv;
+	};
+
+	panel {
+                compatible = "lg,lb070wv8", "simple-panel";
+		port {
+			panel_input: endpoint {
+				remote-endpoint = <&tcon_lcd0_out_panel>;
+			};
+		};
+	};
+
+	rotary@0 {
+		compatible = "rotary-encoder";
+		gpios = <&pio 4 0 GPIO_ACTIVE_LOW>, <&pio 4 1 GPIO_ACTIVE_LOW>; /* PE0, PE1 */
+		linux,axis = <0>; /* REL_X */
+		rotary-encoder,encoding = "binary";
+		rotary-encoder,relative-axis;
+		status = "okay";
+	};
+
+	rotary@1 {
+                compatible = "rotary-encoder";
+		gpios = <&pio 4 2 GPIO_ACTIVE_LOW>, <&pio 4 3 GPIO_ACTIVE_LOW>; /* PE2, PE3 */
+                linux,axis = <1>; /* REL_Y */
+                rotary-encoder,encoding = "binary";
+                rotary-encoder,relative-axis;
+                rotary-encoder,rollover;
+                status = "okay";
+	};
+
+        buttonkeys {
+                compatible = "gpio-keys";
+                status = "okay";
+                button@0 {
+                        label = "Left key";
+                        gpios = <&pio 4 4 GPIO_ACTIVE_LOW>; /* PE4 */
+                        linux,code = <105>; /* KEY_LEFT */
+                };
+        };
+
+};
+
+
+&wdt {
+	status = "okay";
+};
+
+&de {
+	status = "okay";
+};
+
+&tcon_lcd0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&lcd_rgb666_pins>;
+	status = "okay";
+};
+
+&tcon_lcd0_out {
+	tcon_lcd0_out_panel: endpoint@0 {
+		reg = <0>;
+		remote-endpoint = <&panel_input>;
+	};
+};
+
+&codec_analog {
+	status = "okay";
+};
+
+&codec {
+	status = "okay";
+};
+
+&cpu0 {
+	cpu-supply = <&reg_vcc_core>;
+};
+
+&cpu1 {
+	cpu-supply = <&reg_vcc_core>;
+};
+
+&mmc1 {
+	rtl8189ftv: wifi@1 {
+		reg = <1>;
+		interrupt-parent = <&pio>;
+		interrupts = <6 10 IRQ_TYPE_LEVEL_LOW>; /* PG10 = WL_WAKE_AP */
+		interrupt-names = "host-wake";
+	};
+};

@@ -123,6 +123,8 @@ RUN sudo chroot ${HOME}/output/rootfs/ /usr/bin/qemu-armhf-static /bin/bash -c "
     libpng-dev libturbojpeg0-dev libmng-dev \
     inetutils-ping inetutils-traceroute inetutils-tools openssh-server \
     libgbm-dev libmpg123-dev libsamplerate-dev \
+    libevdev-dev libevdev-doc evemu-tools evtest libevemu3 libevemu-dev \
+    bsdextrautils groff-base libpipeline1 libuchardet0 man-db \
     --no-install-recommends"
 
 ##	libdbus-1-dev libgl1-mesa-dri genimage libdrm-dev 
